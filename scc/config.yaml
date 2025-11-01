@@ -1,0 +1,4 @@
+T_min: 18.0
+T_max: 26.0
+dt: 60        # seconds per step (prototype)
+smoothing_alpha: 0.5

@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./frontend
+    network_mode: "none"  # placeholder: ensure manual networking decisions
+    # WARNING: Do not enable without containment. This is a stub for Step-1.

@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+logs/
+*.pyc
+hvac-honeypot/attack_response_plot1.png
+hvac-honeypot/attack_response_plot2.png
+docker-compose.override.yml
