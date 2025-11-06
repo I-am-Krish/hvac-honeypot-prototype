@@ -1,8 +1,22 @@
-.env
+# Python / env
 .venv/
+.env
+venv/
 __pycache__/
-logs/
 *.pyc
-hvac-honeypot/attack_response_plot1.png
-hvac-honeypot/attack_response_plot2.png
+
+# Data / logs / results / models
+dataset/
+logs/
+models/
+results/
+collected/
+*.pcap
+
+# Docker artifacts
+.dockerignore
 docker-compose.override.yml
+
+# OS artifacts
+.DS_Store
+Thumbs.db
