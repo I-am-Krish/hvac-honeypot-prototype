@@ -32,7 +32,10 @@ def get_temp():
 
 @app.route("/actuator/heater", methods=["POST"])
 def set_heater():
-    data = request.json or {}
+    try:
+        data = request.get_json(force=True)
+    except Exception:
+        return jsonify({"error": "invalid json"}), 400
     power = float(data.get("power", 0.0))
     role = data.get("role", "user")
     # define simulate_step_fn that uses the simulator's current state (preview)
@@ -51,4 +54,4 @@ def set_heater():
     return jsonify({"requested_power": power, "applied_power": applied, "temperature": newT, "override": override})
 
 if __name__ == "__main__":
-    app.run(port=5000, host="127.0.0.1")
+    app.run(port=5000, host="0.0.0.0")

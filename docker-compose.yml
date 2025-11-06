@@ -1,6 +1,41 @@
-version: "3.8"
 services:
-  frontend:
-    build: ./frontend
-    network_mode: "none"  # placeholder: ensure manual networking decisions
-    # WARNING: Do not enable without containment. This is a stub for Step-1.
+  simulator:
+    build:
+      context: .
+      dockerfile: dockerfile.simulator
+    container_name: hvac_simulator
+    networks:
+      - hvac_net
+
+  honeypot:
+    build:
+      context: .
+      dockerfile: dockerfile.honeypot
+    container_name: hvac_honeypot
+    depends_on:
+      - simulator
+    ports:
+      - "127.0.0.1:5000:5000"   # Expose API to host
+    volumes:
+      - ./frontend:/app/frontend
+      - ./simulator:/app/simulator
+    networks:
+      - hvac_net
+      - hvac_bridge   # <-- Add this line!
+
+  gateway:
+    image: alpine
+    container_name: hvac_gateway
+    command: sh -c "apk add --no-cache tcpdump && tail -f /dev/null"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      - hvac_net
+      - hvac_bridge
+
+networks:
+  hvac_net:
+    internal: true
+  hvac_bridge:
+    external: true

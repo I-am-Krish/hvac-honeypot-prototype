@@ -2,7 +2,7 @@
 # Simple scripted attacker that performs a setpoint flood and sensor spoof (demo purposes)
 import requests, time
 
-BASE="http://127.0.0.1:5000"
+BASE="http://hvac_honeypot:5000"
 
 def set_power(p, role="attacker"):
     r = requests.post(BASE+"/actuator/heater", json={"power": p, "role": role})

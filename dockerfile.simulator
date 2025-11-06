@@ -1,0 +1,25 @@
+# ===============================
+# HVAC Simulator Dockerfile
+# ===============================
+FROM python:3.12-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy only requirements first to enable caching
+COPY simulator/requirements.txt .
+
+# Install simulator dependencies (cached)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy simulator code after installing dependencies
+COPY simulator/ /app/
+
+# Make simulator importable
+ENV PYTHONPATH="/app:${PYTHONPATH}"
+
+# Expose internal service port (if you use Flask or FastAPI here)
+EXPOSE 8000
+
+# Default command to start simulator
+CMD ["python", "run_sim.py"]
