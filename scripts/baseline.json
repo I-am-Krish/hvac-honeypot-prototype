@@ -1,0 +1,29 @@
+{
+  "sources": [
+    {
+      "name": "HoneyDB stats",
+      "url": "https://honeydb.io/stats",
+      "note": "Public monthly stats used to estimate event volumes and service mixes. Detailed per-session data requires API access."
+    },
+    {
+      "name": "The Honeynet Project",
+      "url": "https://www.honeynet.org/",
+      "note": "Community reports and research used to inform heuristics for detection resistance and policy adaptation latency."
+    }
+  ],
+  "derived_from": "HoneyDB public stats + Honeynet literature (see sources)",
+  "assumptions": [
+    "Baseline engagement duration represents a conservative median for low-interaction honeypots (e.g., SSH/HTTP): 5 minutes",
+    "Detection resistance is approximated from literature and typical low-interaction honeypot behavior",
+    "Policy adaptation latency baseline assumes manual or periodic policy updates (~3 minutes)",
+    "Resource overhead baseline is a small footprint (0.2 normalized score) for simple honeypots",
+    "Threat intel yield baseline is moderate (0.4) for networks capturing varied services"
+  ],
+  "baseline": {
+    "engagement_duration_s": 300.0,
+    "detection_resistance": 0.35,
+    "policy_adaptation_latency_s": 180.0,
+    "resource_overhead_score": 0.2,
+    "threat_intel_yield": 0.4
+  }
+}

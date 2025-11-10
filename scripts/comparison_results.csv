@@ -1,0 +1,6 @@
+metric,baseline_value,adaptive_value
+engagement_duration_s,300.0,1211.0
+detection_resistance,0.35,1.0
+policy_adaptation_latency_s,180.0,0.0
+resource_overhead_score,0.2,0.09340509999999999
+threat_intel_yield,0.4,0.04328851457251944
